@@ -1,25 +1,40 @@
+import Image from "next/image";
 import { navItems } from "../../constants";
 
 const Header = () => {
   return (
-    <header className="w-full py-5 sm:px-10 px-5 flex justify-between items-center">
-      <nav className="flex w-full screen-max-width">
-        <img src="logo" alt="logo" width={14} height={14} />
-
-        <div className="flex flex-1 justify-center max-sm:hidden">
+    <header className="flex w-full items-center justify-between p-5 sm:px-10">
+      <nav className="flex w-full">
+        <div className="flex items-center gap-1">
+          <Image src="/icons/sparkles.svg" alt="logo" width={24} height={24} />
+          <p className="font-semibold">My AI Stylist</p>
+        </div>
+        <div className="flex flex-1 items-center justify-center max-sm:hidden">
           {navItems.map((item) => (
             <div
               key={item}
-              className="px-5 text-sm cursor-pointer text-slate-700 hover:text-pink-600 transition-all"
+              className="cursor-pointer px-5 text-sm text-slate-700 transition-all hover:text-pink-600"
             >
               {item}
             </div>
           ))}
         </div>
 
-        <div className="flex items-baseline gap-7 max-sm:justify-end max-sm:flex-1">
-          <img src="" alt="search" width={18} height={18} />
-          <img src="" alt="bag" width={18} height={18} />
+        <div className="flex items-center gap-7 max-sm:flex-1 max-sm:justify-end">
+          <Image
+            src="/icons/search.svg"
+            alt="search"
+            width={20}
+            height={20}
+            className="cursor-pointer"
+          />
+          <Image
+            src="/icons/bag.svg"
+            alt="bag"
+            width={20}
+            height={20}
+            className="cursor-pointer"
+          />
         </div>
       </nav>
     </header>
