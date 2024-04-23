@@ -1,9 +1,17 @@
 "use client";
 
+import { functionCallHandler } from "@/utils";
 import { useChat } from "ai/react";
 
 export default function Chat() {
-  const { messages, input, handleInputChange, handleSubmit } = useChat();
+  const { messages, input, handleInputChange, handleSubmit } = useChat({
+    experimental_onFunctionCall: functionCallHandler,
+  });
+
+  const examples = [
+    "Best casual dresses to wear for a pear body shape",
+    "Off the shoulder tops for a rectangle body shape",
+  ];
 
   return (
     // eslint-disable-next-line tailwindcss/no-custom-classname
