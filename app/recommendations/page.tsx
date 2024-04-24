@@ -1,4 +1,4 @@
-import ClothingData from "@/components/shared/ClothingData";
+import ClothingData from "@/components/shared/ClothingCard";
 import React from "react";
 
 const page = () => {
