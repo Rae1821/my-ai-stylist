@@ -22,3 +22,12 @@ export const bodyShapes = [
     label: "Apple Body Shape",
   },
 ];
+
+export const clothingTypes = [
+  "Tops",
+  "Pants",
+  "Skirts",
+  "Dresses",
+  "Outerwear",
+  "Sweaters",
+];

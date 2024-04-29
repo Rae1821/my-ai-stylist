@@ -6,12 +6,26 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { ClothingProps } from "@/types";
+import Image from "next/image";
 // import { fetchClothing } from "@/utils";
 
-const ClothingData = async () => {
-  // const allClothing = await fetchClothing();
+interface ClothingCardProps {
+  clothing: ClothingProps;
+}
 
-  // console.log(allClothing);
+const ClothingCard = ({ clothing }: ClothingCardProps) => {
+  const {
+    clothingTitle,
+    clothingDescription,
+    clothingPrice,
+    clothingOriginalPrice,
+    clothingCurrency,
+    clothingRating,
+    clothingNumRatings,
+    clothingUrl,
+    clothingImg,
+  } = clothing;
 
   return (
     <div>
@@ -19,24 +33,29 @@ const ClothingData = async () => {
       <div>
         <Card className="w-[300px]">
           <CardHeader>
-            <CardTitle>Product Title</CardTitle>
-            <CardDescription>Product Description</CardDescription>
+            <CardTitle>{clothingTitle}</CardTitle>
+            <CardDescription>{clothingDescription}</CardDescription>
           </CardHeader>
           <CardContent>
             <div>
-              {/* <Image src={product_photo}
+              <Image
+                src={clothingImg}
                 alt="product photo"
                 width={300}
-                height={300} /> */}
+                height={300}
+              />
             </div>
             <p>
-              <span>Currency</span>Product Price{" "}
+              <span>{clothingCurrency}</span>
+              {clothingPrice} <span>{clothingOriginalPrice}</span>
             </p>
             <p>Product Description</p>
           </CardContent>
           <CardFooter>
-            <p>Product Star Rating</p>
-            <p>Product URL</p>
+            <p>
+              {clothingRating} <span>{clothingNumRatings}</span>
+            </p>
+            <p>{clothingUrl}</p>
           </CardFooter>
         </Card>
       </div>
@@ -44,7 +63,7 @@ const ClothingData = async () => {
   );
 };
 
-export default ClothingData;
+export default ClothingCard;
 
 // asin:"B010RWDJOY"
 // product_title:"Nike Performance Cushion Crew Socks with Band (6 Pairs)"

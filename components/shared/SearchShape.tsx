@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import { useState } from "react";
 import { Check, ChevronsUpDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -18,10 +18,11 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { bodyShapes } from "@/constants";
+import { SearchShapeProps } from "@/types";
 
-export function SearchClothing() {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState("");
+const SearchShape = ({ shape, setShape }: SearchShapeProps) => {
+  const [open, setOpen] = useState(false);
+  const [value, setValue] = useState("");
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -66,4 +67,6 @@ export function SearchClothing() {
       </PopoverContent>
     </Popover>
   );
-}
+};
+
+export default SearchShape;
