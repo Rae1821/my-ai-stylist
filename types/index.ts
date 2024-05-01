@@ -14,3 +14,7 @@ export interface ClothingProps {
   clothingUrl: string;
   clothingImg: string;
 }
+
+export interface SearchProps {
+  searchItem: string;
+}
