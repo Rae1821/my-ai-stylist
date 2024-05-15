@@ -16,15 +16,14 @@ interface ClothingCardProps {
 
 const ClothingCard = ({ clothing }: ClothingCardProps) => {
   const {
-    clothingTitle,
-    clothingDescription,
-    clothingPrice,
-    clothingOriginalPrice,
-    clothingCurrency,
-    clothingRating,
-    clothingNumRatings,
-    clothingUrl,
-    clothingImg,
+    product_title,
+    product_price,
+    product_original_price,
+    currency,
+    product_star_rating,
+    product_num_rating,
+    product_url,
+    product_photo,
   } = clothing;
 
   return (
@@ -33,21 +32,21 @@ const ClothingCard = ({ clothing }: ClothingCardProps) => {
       <div>
         <Card className="w-[300px]">
           <CardHeader>
-            <CardTitle>{clothingTitle}</CardTitle>
-            <CardDescription>{clothingDescription}</CardDescription>
+            <CardTitle>{product_title}</CardTitle>
+            <CardDescription></CardDescription>
           </CardHeader>
           <CardContent>
             <div>
               <Image
-                src={clothingImg}
+                src={product_photo}
                 alt="product photo"
                 width={300}
                 height={300}
               />
             </div>
             <p>
-              <span>{clothingCurrency}</span>
-              {clothingPrice} <span>{clothingOriginalPrice}</span>
+              <span>{currency}</span>
+              {product_price} <span>{clothingOriginalPrice}</span>
             </p>
             <p>Product Description</p>
           </CardContent>

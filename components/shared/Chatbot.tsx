@@ -8,10 +8,10 @@ export default function Chat() {
     experimental_onFunctionCall: functionCallHandler,
   });
 
-  const examples = [
-    "Best casual dresses to wear for a pear body shape",
-    "Off the shoulder tops for a rectangle body shape",
-  ];
+  // const examples = [
+  //   "Best casual dresses to wear for a pear body shape",
+  //   "Off the shoulder tops for a rectangle body shape",
+  // ];
 
   return (
     // eslint-disable-next-line tailwindcss/no-custom-classname

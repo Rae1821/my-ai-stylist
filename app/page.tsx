@@ -1,25 +1,20 @@
 // import Chatbot from "@/components/shared/Chatbot";
-// import ClothingData from "@/components/shared/ClothingCard";
-// import ClothingCard from "@/components/shared/ClothingCard";
+
+// import AllClothing from "@/components/shared/AllClothing";
 import Header from "@/components/shared/Header";
-import SearchBar from "@/components/shared/SearchBar";
-import { fetchClothing } from "./actions";
-// import { fetchClothing } from "@/utils";
+// import SearchBar from "@/components/shared/SearchBar";
+import { Link } from "lucide-react";
 
 export default async function Home() {
-  const allClothing = await fetchClothing();
-
-  // const isDataEmpty =
-  //   !Array.isArray(allClothing) || allClothing.length < 1 || !allClothing; // if any of these is true that means our data is empty
-
   return (
     <main className="min-h-screen bg-pink-50 px-2">
       <Header />
       {/* <Chatbot /> */}
       {/* <ClothingData /> */}
-
-      <div className="mx-auto mt-12 w-[300px]">
-        <SearchBar />
+      <div className="mx-auto">
+        <Link href="/recommendations" className="text-2xl text-black">
+          Recommendations
+        </Link>
       </div>
 
       {/* {!isDataEmpty ? (

@@ -8,15 +8,20 @@ export async function fetchClothing(formData: FormData) {
     "X-RapidAPI-Host": "real-time-amazon-data.p.rapidapi.com",
   };
 
-  // console.log(formData);
+  try {
+    const response = await fetch(
+      `https://real-time-amazon-data.p.rapidapi.com/search?query=${searchItem}&page=1&country=US&category_id=aps`,
+      {
+        method: "GET",
+        headers,
+      }
+    );
 
-  const response = await fetch(
-    `https://real-time-amazon-data.p.rapidapi.com/search?query=${searchItem}&page=1&country=US&category_id=aps`,
-    {
-      headers,
-    }
-  );
-  const result = await response.json();
-  console.log(result.data.products);
-  return result;
+    const res = await response.json();
+    const result = res.data.products;
+
+    return result;
+  } catch (error) {
+    console.log(error);
+  }
 }
