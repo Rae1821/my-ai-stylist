@@ -87,18 +87,22 @@
   @apply text-xl leading-6 font-semibold truncate;
 }
 
+/* background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), */
+
 .heroImage {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)),
-    url("/images/hero.jpg");
+  background-image: url("/images/hero.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
 
-.quizButton {
-  background-color: coral;
+.turqColor {
+  background-color: #038c8c;
+  color: #038c8c;
 }
 
-.quizButton2 {
-  background-color: lightgrey;
+.bronzeColor {
+  background-color: #bf6e26;
+  color: #bf6e26;
 }

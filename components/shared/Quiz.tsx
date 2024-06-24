@@ -110,7 +110,7 @@ const Quiz: FC = () => {
   }
 
   return (
-    <section className="container my-24 h-[800px]">
+    <section className="container relative my-24 h-[800px] bg-white">
       <div className="flex items-center justify-center">
         <div></div>
         <div className="w-full">
@@ -129,7 +129,7 @@ const Quiz: FC = () => {
                 <div className="flex w-[275px] flex-col justify-center md:h-[47px] md:w-full md:flex-row md:items-center md:justify-start">
                   {option.answers.map((answer, j) => (
                     <p
-                      className={`${selectedAnswers[i] === answer.text ? "bg-primary/60" : "bg-primary/10"} my-2 ml-4 flex  cursor-pointer rounded-lg border border-rose-200 px-2 py-1 text-center text-sm shadow hover:bg-primary/60 hover:shadow-lg hover:transition-all focus:outline-none focus:ring-2`}
+                      className={`${selectedAnswers[i] === answer.text ? "bg-secondary/60" : "bg-white"} my-2 ml-4 flex  cursor-pointer rounded-lg border border-teal-600 px-2 py-1 text-center text-sm shadow hover:bg-teal-600/60 hover:shadow-lg hover:transition-all focus:outline-none focus:ring-2`}
                       key={j}
                       onClick={(e) =>
                         handleAnswerClick(i, answer.value, answer.text)
@@ -141,9 +141,9 @@ const Quiz: FC = () => {
                 </div>
               </div>
             ))}
-            <div className="mx-auto mt-8 flex w-full items-center justify-between">
+            <div className="mx-auto mt-8 flex w-full items-center justify-between md:mx-0 md:w-1/2">
               <Button
-                className="w-full"
+                className="w-full bg-teal-600 hover:border-2 hover:border-teal-600 hover:bg-white hover:text-black"
                 onClick={() => {
                   getTheResult(styleObj);
                 }}
@@ -151,7 +151,7 @@ const Quiz: FC = () => {
                 Get Your Style
               </Button>
               <Button
-                className="ml-2 w-full border-2 border-primary bg-white text-black hover:text-slate-100"
+                className="ml-2 w-full border-2 border-teal-600 bg-white text-black hover:bg-teal-600 hover:text-slate-100"
                 onClick={handleStartOver}
               >
                 Start over
