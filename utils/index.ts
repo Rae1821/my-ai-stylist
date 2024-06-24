@@ -50,15 +50,13 @@ export async function fetchClothing({ searchItem }: { searchItem: string }) {
     const response = await fetch(
       `https://real-time-amazon-data.p.rapidapi.com/search?query=${searchItem}&page=1&country=US&category_id=aps`,
       {
-        method: "GET",
         headers,
       }
     );
+    // parse the response as json
+    const result = await response.json();
 
-    const res = await response.json();
-    const result = res.data.products;
-
-    return result;
+    return result.data.products;
   } catch (error) {
     console.log(error);
   }

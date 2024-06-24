@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { navItems } from "../../constants";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -18,6 +19,7 @@ const Header = () => {
               {item}
             </div>
           ))}
+          <Link href="/recommendations">Recommendations</Link>
         </div>
 
         <div className="flex items-center gap-7 max-sm:flex-1 max-sm:justify-end">

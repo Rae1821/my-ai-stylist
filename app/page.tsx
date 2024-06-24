@@ -1,21 +1,26 @@
 // import Chatbot from "@/components/shared/Chatbot";
 
 // import AllClothing from "@/components/shared/AllClothing";
+// import Calculator from "@/components/shared/Calculator";
 import Header from "@/components/shared/Header";
+import Hero from "@/components/shared/Hero";
+import Quiz from "@/components/shared/Quiz";
 // import SearchBar from "@/components/shared/SearchBar";
-import { Link } from "lucide-react";
 
 export default async function Home() {
   return (
-    <main className="min-h-screen bg-pink-50 px-2">
+    <main className="min-h-screen">
       <Header />
+
+      <Hero />
+
+      <Quiz />
+
+      {/* <Calculator /> */}
+
       {/* <Chatbot /> */}
       {/* <ClothingData /> */}
-      <div className="mx-auto">
-        <Link href="/recommendations" className="text-2xl text-black">
-          Recommendations
-        </Link>
-      </div>
+      <div className="mx-auto"></div>
 
       {/* {!isDataEmpty ? (
         <section>

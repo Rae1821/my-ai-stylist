@@ -1,6 +1,5 @@
 "use client";
 
-// import { useRouter } from "next/navigation";
 import { Input } from "../ui/input";
 import { AddSearchButton } from "./AddSearchButton";
 import React, { useState } from "react";
@@ -21,14 +20,17 @@ const SearchBar = () => {
   };
 
   const updateSearchParams = (searchItem: string) => {
+    // create a new URLSearchParams object using the current URL search parameters
     const searchParams = new URLSearchParams(window.location.search);
 
+    // update or delete the 'searchitem' search parameter bades on the 'searchitem' value
     if (searchItem) {
       searchParams.set("searchItem", searchItem);
     } else {
       searchParams.delete("searchItem", searchItem);
     }
 
+    // generate the new pathname with the updated search parameters
     const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
 
     router.push(newPathname);

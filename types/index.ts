@@ -9,13 +9,17 @@ export interface ClothingProps {
   product_original_price: number;
   currency: string;
   product_star_rating: number;
-  product_num_rating: number;
+  product_num_ratings: number;
   product_url: string;
   product_photo: string;
 }
 
 export interface SearchProps {
   searchItem: string;
+}
+
+export interface HomeProps {
+  searchParams: SearchProps;
 }
 
 // asin:"B010RWDJOY"

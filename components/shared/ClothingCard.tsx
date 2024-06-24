@@ -1,13 +1,15 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+// import {
+//   Card,
+//   CardContent,
+//   CardDescription,
+//   CardFooter,
+//   CardHeader,
+//   CardTitle,
+// } from "@/components/ui/card";
 import { ClothingProps } from "@/types";
 import Image from "next/image";
+import Link from "next/link";
+// import { Button } from "../ui/button";
 // import { fetchClothing } from "@/utils";
 
 interface ClothingCardProps {
@@ -16,49 +18,98 @@ interface ClothingCardProps {
 
 const ClothingCard = ({ clothing }: ClothingCardProps) => {
   const {
-    product_title,
-    product_price,
-    product_original_price,
-    currency,
-    product_star_rating,
-    product_num_rating,
-    product_url,
-    product_photo,
+    product_title: productTitle,
+    product_price: productPrice,
+    product_original_price: productOriginalPrice,
+    product_star_rating: productStarRating,
+    product_num_ratings: productNumRatings,
+    product_url: productUrl,
+    product_photo: productPhoto,
   } = clothing;
 
   return (
-    <div>
-      <h1>Clothing Data</h1>
-      <div>
-        <Card className="w-[300px]">
-          <CardHeader>
-            <CardTitle>{product_title}</CardTitle>
-            <CardDescription></CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div>
-              <Image
-                src={product_photo}
-                alt="product photo"
-                width={300}
-                height={300}
-              />
-            </div>
-            <p>
-              <span>{currency}</span>
-              {product_price} <span>{clothingOriginalPrice}</span>
-            </p>
-            <p>Product Description</p>
-          </CardContent>
-          <CardFooter>
-            <p>
-              {clothingRating} <span>{clothingNumRatings}</span>
-            </p>
-            <p>{clothingUrl}</p>
-          </CardFooter>
-        </Card>
+    <Link href={productUrl} className="product-card">
+      <div className="product-card_img-container">
+        <Image
+          src={productPhoto}
+          width={200}
+          height={200}
+          alt={productTitle}
+          className="product-card_img"
+        />
       </div>
-    </div>
+
+      <div className="flex flex-col gap-3">
+        <h3 className="product-title">{productTitle}</h3>
+        <div className="flex justify-between">
+          <p className="flex items-center gap-2 capitalize text-black opacity-50">
+            <span>
+              <Image
+                src="/icons/star.svg"
+                width={20}
+                height={20}
+                alt="star icon"
+              />
+            </span>
+            {productStarRating} / {productNumRatings}
+          </p>
+          <p className="font-semibold text-black">
+            <span>{productPrice}</span>
+            <span className="ml-2 font-light text-gray-400 line-through">
+              {productOriginalPrice}
+            </span>
+          </p>
+        </div>
+      </div>
+      {/* <Link href={productUrl}>
+          <Card className="product-card">
+            <CardHeader>
+              <div className="product-card_img-container">
+                <Image
+                  src={productPhoto}
+                  alt="product photo"
+                  width={100}
+                  height={100}
+                />
+              </div>
+              <CardTitle className="text-sm font-semibold text-gray-800">
+                {productTitle}
+              </CardTitle>
+              <CardDescription></CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm">
+                <span className="mr-1 font-semibold">{currency}</span>
+                {productPrice}{" "}
+                <span className="ml-1 text-gray-400 line-through">
+                  {productOriginalPrice}
+                </span>
+              </p>
+            </CardContent>
+            <CardFooter className="flex flex-col items-start">
+              <p className="flex flex-row items-center gap-1 text-sm">
+                <span>
+                  <Image
+                    src="/icons/star.svg"
+                    width={20}
+                    height={20}
+                    alt="star icon"
+                    className="text-yellow-500"
+                  />
+                </span>
+                {productStarRating} /
+                <span className="text-gray-400">{productNumRatings}</span>
+              </p>
+
+              <Button className="bg-pink-500" asChild>
+                <Link href={productUrl} className="mt-6">
+                  See more
+                </Link>
+              </Button>
+            </CardFooter>
+          </Card>
+        </Link> */}
+    </Link>
   );
 };
 

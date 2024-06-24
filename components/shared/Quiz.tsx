@@ -1,0 +1,177 @@
+"use client";
+
+import { questions } from "@/constants";
+import { Button } from "../ui/button";
+import React, { FC, useState } from "react";
+
+type Answer = {
+  index: number;
+  answer: string;
+  text: string;
+};
+
+const Quiz: FC = () => {
+  const [result, setResult] = useState<string>("");
+  const [answersArr, setAnswersArr] = useState<Answer[]>([]);
+  const [styleObj, setStyleObj] = useState({});
+  const [selectedAnswers, setSelectedAnswers] = useState<{
+    [key: number]: string;
+  }>({});
+
+  const handleAnswerClick = (
+    questionIndex: number,
+    answerValue: string,
+    textValue: string
+  ) => {
+    const answer: Answer = {
+      index: questionIndex,
+      answer: answerValue,
+      text: textValue,
+    };
+
+    // Check if the answer already exists
+    const existingAnswerIndex = answersArr.findIndex(
+      (item) => item.index === questionIndex
+    );
+
+    if (existingAnswerIndex !== -1) {
+      // Update existing answer
+      const updatedAnswers = [...answersArr];
+      updatedAnswers[existingAnswerIndex].answer = answerValue;
+      updatedAnswers[existingAnswerIndex].text = textValue;
+      setAnswersArr(updatedAnswers);
+    } else {
+      // Add new answer
+      setAnswersArr([...answersArr, answer]);
+    }
+
+    // Update the selected answer for the specific question
+    setSelectedAnswers((prev) => ({ ...prev, [questionIndex]: textValue }));
+
+    handleFindStyle();
+  };
+
+  const handleFindStyle = () => {
+    // answersArr.map((answerObj, i) => {
+    //   const answerObjIndex = answersArr[i];
+    //   const newAnswer = answerObjIndex.answer;
+
+    //   const answerValue = newAnswer.valueOf();
+
+    const style = {
+      Boho: 0,
+      Chic: 0,
+      Edgy: 0,
+      Classic: 0,
+      Sporty: 0,
+    };
+
+    answersArr.forEach((answerObj) => {
+      const userAnswerValue = answerObj.answer;
+
+      if (userAnswerValue === "boho") {
+        style.Boho += 1;
+      } else if (userAnswerValue === "classic") {
+        style.Classic += 1;
+      } else if (userAnswerValue === "chic") {
+        style.Chic += 1;
+      } else if (userAnswerValue === "sporty") {
+        style.Sporty += 1;
+      } else if (userAnswerValue === "edgy") {
+        style.Edgy += 1;
+      } else {
+        return userAnswerValue;
+      }
+      console.log(styleObj);
+
+      setStyleObj(style);
+    });
+  };
+
+  function getTheResult(obj: any) {
+    let highestCategory = 0;
+
+    let winningCategory = "";
+
+    for (const style in obj) {
+      if (obj[style] > highestCategory) {
+        highestCategory = obj[style];
+        winningCategory = style;
+      }
+      // console.log(highestCategory, winningCategory);
+    }
+    return setResult(winningCategory);
+  }
+
+  function handleStartOver(obj: any) {
+    setStyleObj(obj);
+    setResult("");
+    setSelectedAnswers(obj);
+  }
+
+  return (
+    <section className="container my-24 h-[800px]">
+      <div className="flex items-center justify-center">
+        <div></div>
+        <div className="w-full">
+          <div className="mb-4">
+            <h2 className="text-4xl font-semibold">Fashion Style Quiz</h2>
+            <p>Answer the questions below to find out your fashion style</p>
+          </div>
+
+          <div id="quiz">
+            {questions.map((option, i) => (
+              <div key={i}>
+                <p className="mb-2 mt-8 font-semibold md:text-lg">
+                  <span>{option.id}. </span>
+                  {option.text}
+                </p>
+                <div className="flex w-[275px] flex-col justify-center md:h-[47px] md:w-full md:flex-row md:items-center md:justify-start">
+                  {option.answers.map((answer, j) => (
+                    <p
+                      className={`${selectedAnswers[i] === answer.text ? "bg-primary/60" : "bg-primary/10"} my-2 ml-4 flex  cursor-pointer rounded-lg border border-rose-200 px-2 py-1 text-center text-sm shadow hover:bg-primary/60 hover:shadow-lg hover:transition-all focus:outline-none focus:ring-2`}
+                      key={j}
+                      onClick={(e) =>
+                        handleAnswerClick(i, answer.value, answer.text)
+                      }
+                    >
+                      {answer.text}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            ))}
+            <div className="mx-auto mt-8 flex w-full items-center justify-between">
+              <Button
+                className="w-full"
+                onClick={() => {
+                  getTheResult(styleObj);
+                }}
+              >
+                Get Your Style
+              </Button>
+              <Button
+                className="ml-2 w-full border-2 border-primary bg-white text-black hover:text-slate-100"
+                onClick={handleStartOver}
+              >
+                Start over
+              </Button>
+            </div>
+          </div>
+
+          <div className="mt-12 h-[300px] w-full">
+            {result && (
+              <div id="result" className="h-24 w-full">
+                <h2 className="text-4xl font-semibold">
+                  Your Fashion Style is: <span>{result}</span>
+                </h2>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Quiz;

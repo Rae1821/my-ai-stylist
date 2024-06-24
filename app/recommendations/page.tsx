@@ -1,35 +1,41 @@
-"use client";
-
-import { useEffect, useState } from "react";
 import SearchBar from "@/components/shared/SearchBar";
+// import ClothingCard from "@/components/shared/ClothingCard";
+import { fetchClothing } from "@/utils";
+import { HomeProps } from "@/types";
 import ClothingCard from "@/components/shared/ClothingCard";
-// import { fetchClothing } from "@/utils";
-import { useSession } from 'next-auth/react'
+// import { useSession } from 'next-auth/react'
 
-const RecommendationsPage = () => {
-  const [allClothingProducts, setAllClothingProducts] = useState([]);
+export default async function RecommendationsPage({ searchParams }: HomeProps) {
+  const allClothingProducts = await fetchClothing(searchParams);
 
-  useEffect(() => {
-    const fetchResult = async () => {
-      const response = await fetch(`/api/clothing/products`);
-      const data = await response.json();
-      setAllClothingProducts(data);
-    };
-    fetchResult();
-  }, []);
+  console.log(allClothingProducts);
+
+  const isDataEmpty =
+    !Array.isArray(allClothingProducts) ||
+    allClothingProducts.length < 1 ||
+    !allClothingProducts;
 
   return (
-    <div>
-      <div>
+    <div className="px-2">
+      <div className="mx-auto mt-12 w-full md:w-1/2">
         <SearchBar />
       </div>
       <div>
-        {allClothingProducts.map((product) => (
-          <ClothingCard key={product} clothing={product} />
-        ))}
+        {!isDataEmpty ? (
+          <section>
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-4 md:flex-row">
+              {allClothingProducts?.map((product) => (
+                <ClothingCard key={product} clothing={product} />
+              ))}
+            </div>
+          </section>
+        ) : (
+          <div>
+            <h2>Oops, no results</h2>
+            <p>{allClothingProducts?.message}</p>
+          </div>
+        )}
       </div>
     </div>
   );
-};
-
-export default RecommendationsPage;
+}
