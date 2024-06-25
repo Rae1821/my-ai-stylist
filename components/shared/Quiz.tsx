@@ -110,7 +110,7 @@ const Quiz: FC = () => {
   }
 
   return (
-    <section className="container relative my-24 h-[800px] bg-white">
+    <section className="container relative mb-0 mt-12 bg-white md:h-[800px]">
       <div className="flex items-center justify-center">
         <div></div>
         <div className="w-full">
@@ -141,7 +141,7 @@ const Quiz: FC = () => {
                 </div>
               </div>
             ))}
-            <div className="mx-auto mt-8 flex w-full items-center justify-between md:mx-0 md:w-1/2">
+            <div className="mx-auto mt-8 flex w-full flex-col items-center justify-center gap-2 md:mx-0 md:w-1/2 md:flex-row">
               <Button
                 className="w-full bg-teal-600 hover:border-2 hover:border-teal-600 hover:bg-white hover:text-black"
                 onClick={() => {

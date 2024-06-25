@@ -1,5 +1,28 @@
 export const navItems = ["Home", "About", "Favorites"];
 
+export const navLinks = [
+  {
+    label: "Home",
+    route: "/",
+  },
+  {
+    label: "About",
+    route: "/",
+  },
+  {
+    label: "Profile",
+    route: "/",
+  },
+  {
+    label: "Products",
+    route: "/",
+  },
+  {
+    label: "Start Here",
+    route: "/",
+  },
+];
+
 export const bodyShapes = [
   {
     value: "pear shape",
@@ -143,3 +166,5 @@ export const questions = [
     ],
   },
 ];
+
+

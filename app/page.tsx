@@ -1,8 +1,7 @@
 // import Chatbot from "@/components/shared/Chatbot";
 
 // import AllClothing from "@/components/shared/AllClothing";
-// import Calculator from "@/components/shared/Calculator";
-import Header from "@/components/shared/Header";
+import Calculator from "@/components/shared/Calculator";
 import Hero from "@/components/shared/Hero";
 import Quiz from "@/components/shared/Quiz";
 // import SearchBar from "@/components/shared/SearchBar";
@@ -10,13 +9,12 @@ import Quiz from "@/components/shared/Quiz";
 export default async function Home() {
   return (
     <main className="min-h-screen">
-      <Header />
-
       <Hero />
 
-      <Quiz />
-
-      {/* <Calculator /> */}
+      <div className="relative">
+        <Quiz />
+        <Calculator />
+      </div>
 
       {/* <Chatbot /> */}
       {/* <ClothingData /> */}
