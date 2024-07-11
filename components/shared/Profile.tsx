@@ -1,39 +1,57 @@
-"use client";
-
-import Image from "next/image";
-import React from "react";
-
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+// import ProfileModal from "./ProfileModal";
 import { Button } from "@/components/ui/button";
-import FormModal from "./FormModal";
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
-const Profile = () => {
+const Profile = async () => {
+  const session = await auth();
+
+  if (!session?.user) {
+    redirect("/");
+  }
+
   return (
     <main>
-      <section className="container mt-12">
-        <div className="flex flex-row items-center justify-between">
-          <div className="flex flex-row items-center">
-            <div className="mr-2 rounded-full bg-gray-100 p-4">
-              <Image
-                src="/icons/user.svg"
-                alt="avatar"
-                height={24}
-                width={24}
-                className=""
-              />
-            </div>
-            <div className="leading-snug">
-              <p>Name</p>
-              <p>Style Hub</p>
-            </div>
-          </div>
+      {/* <ProfileModal /> */}
+      <div className="container">
+        <h1 className="text-xl font-semibold">Welcome, {session?.user.name}</h1>
 
-          <div className="">
-            <Button>Edit Profile</Button>
+        <div className="mt-12 flex flex-col gap-4 md:flex-row">
+          <div className="w-full md:w-1/2 lg:w-1/3">
+            <Card className="sm:col-span-2">
+              <CardHeader className="pb-3">
+                <CardTitle>My Body Shape</CardTitle>
+                <CardDescription className="max-w-lg text-balance leading-relaxed">
+                  Your current body shape is: Pear
+                </CardDescription>
+              </CardHeader>
+              <CardFooter>
+                <Button>Calculate Body Shape</Button>
+              </CardFooter>
+            </Card>
+          </div>
+          <div className="w-full md:w-1/2 lg:w-1/3">
+            <Card className="sm:col-span-2">
+              <CardHeader className="pb-3">
+                <CardTitle>My Fashion Style</CardTitle>
+                <CardDescription className="max-w-lg text-balance leading-relaxed">
+                  Your current fashion style is: Edgy
+                </CardDescription>
+              </CardHeader>
+              <CardFooter>
+                <Button>Find My Fashion Style</Button>
+              </CardFooter>
+            </Card>
           </div>
         </div>
-
-        <FormModal />
-      </section>
+      </div>
     </main>
   );
 };

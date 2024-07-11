@@ -1,5 +1,8 @@
 "use server";
 
+import { signIn, signOut } from "@/auth";
+// import { User } from "@/models/user.model";
+
 export async function fetchClothing(formData: FormData) {
   const searchItem = formData.get("searchItem");
 
@@ -25,3 +28,37 @@ export async function fetchClothing(formData: FormData) {
     console.log(error);
   }
 }
+
+// Login with Google
+export async function doSocialLogin(formData: any) {
+  const action = formData.get("action");
+  await signIn(action, { redirectTo: "/profile" });
+}
+
+// Logout
+export async function doLogout() {
+  await signOut({ redirectTo: "/" });
+}
+
+// Login with credentials
+// export async function doCredentialLogin(formData: any) {
+//   try {
+//     const response = await signIn("credentials", {
+//       email: formData.get("email"),
+//       password: formData.get("password"),
+//       redirectTo: "/profile",
+//     });
+
+//     return response;
+//   } catch (error) {
+//     throw new Error(error);
+//   }
+// }
+
+// export async function createUser(user: typeof User) {
+//   try {
+//     await User.create(user);
+//   } catch (e) {
+//     throw new Error(e);
+//   }
+// }

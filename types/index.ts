@@ -22,6 +22,7 @@ export interface HomeProps {
   searchParams: SearchProps;
 }
 
+
 // asin:"B010RWDJOY"
 // product_title:"Nike Performance Cushion Crew Socks with Band (6 Pairs)"
 // product_price:"$25.00"

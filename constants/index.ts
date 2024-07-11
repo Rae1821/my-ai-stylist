@@ -1,5 +1,3 @@
-export const navItems = ["Home", "About", "Favorites"];
-
 export const navLinks = [
   {
     label: "Home",
@@ -7,19 +5,15 @@ export const navLinks = [
   },
   {
     label: "About",
-    route: "/",
+    route: "/#about",
   },
   {
     label: "Profile",
-    route: "/",
+    route: "/profile",
   },
   {
     label: "Products",
-    route: "/",
-  },
-  {
-    label: "Start Here",
-    route: "/",
+    route: "/recommendations",
   },
 ];
 
@@ -166,5 +160,3 @@ export const questions = [
     ],
   },
 ];
-
-

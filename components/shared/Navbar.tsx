@@ -1,8 +1,13 @@
-
 import { navLinks } from "@/constants";
 import Link from "next/link";
+import { auth } from "@/auth";
+import Logout from "./Logout";
 
-const Navbar = () => {
+const Navbar = async () => {
+  const session = await auth();
+
+  console.log(session?.user);
+
   return (
     <nav>
       <ul className="flex w-full cursor-pointer flex-col items-start gap-5 text-sm font-semibold tracking-wider md:flex-row md:justify-between">
@@ -16,6 +21,7 @@ const Navbar = () => {
             </Link>
           </li>
         ))}
+        {!session?.user ? <Link href="/sign-in">Login</Link> : <Logout />}
       </ul>
     </nav>
   );

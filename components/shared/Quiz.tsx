@@ -3,6 +3,10 @@
 import { questions } from "@/constants";
 import { Button } from "../ui/button";
 import React, { FC, useState } from "react";
+import { toast } from "../ui/use-toast";
+// import Image from "next/image";
+import { BookmarkIcon } from "@radix-ui/react-icons";
+// import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 type Answer = {
   index: number;
@@ -141,9 +145,9 @@ const Quiz: FC = () => {
                 </div>
               </div>
             ))}
-            <div className="mx-auto mt-8 flex w-full flex-col items-center justify-center gap-2 md:mx-0 md:w-1/2 md:flex-row">
+            <div className="mx-auto mt-8 flex w-full items-center gap-4 md:mx-0 md:w-1/2 md:flex-row">
               <Button
-                className="w-full bg-teal-600 hover:border-2 hover:border-teal-600 hover:bg-white hover:text-black"
+                className="bg-teal-600 hover:border-2 hover:border-teal-600 hover:bg-white hover:text-black"
                 onClick={() => {
                   getTheResult(styleObj);
                 }}
@@ -151,7 +155,7 @@ const Quiz: FC = () => {
                 Get Your Style
               </Button>
               <Button
-                className="ml-2 w-full border-2 border-teal-600 bg-white text-black hover:bg-teal-600 hover:text-slate-100"
+                className="border-2 border-teal-600 bg-white text-black hover:bg-teal-600 hover:text-slate-100 md:ml-2"
                 onClick={handleStartOver}
               >
                 Start over
@@ -162,12 +166,39 @@ const Quiz: FC = () => {
           <div className="mt-12 h-[300px] w-full">
             {result && (
               <div id="result" className="h-24 w-full">
-                <h2 className="text-4xl font-semibold">
-                  Your Fashion Style is: <span>{result}</span>
+                <h2 className="text-2xl font-semibold">
+                  Your Fashion Style is:{" "}
+                  <span>
+                    {result}
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => {
+                        toast({
+                          title: "Saved",
+                          description: "Results save to your profile",
+                        });
+                      }}
+                    >
+                      <BookmarkIcon className="size-8" />
+                    </Button>
+                  </span>
                 </h2>
               </div>
             )}
           </div>
+          {/*
+          {result && (
+            <div>
+              <Alert>
+                <BookmarkIcon className="size-4" />
+                <AlertTitle>Success!</AlertTitle>
+                <AlertDescription>
+                  Your fashion style is {result}!
+                </AlertDescription>
+              </Alert>
+            </div>
+          )} */}
         </div>
       </div>
     </section>

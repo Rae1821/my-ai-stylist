@@ -6,6 +6,7 @@ import Hero from "@/components/shared/Hero";
 import Quiz from "@/components/shared/Quiz";
 // import SearchBar from "@/components/shared/SearchBar";
 
+
 export default async function Home() {
   return (
     <main className="min-h-screen">
@@ -13,8 +14,9 @@ export default async function Home() {
 
       <div className="relative">
         <Quiz />
-        <Calculator />
       </div>
+
+      <Calculator />
 
       {/* <Chatbot /> */}
       {/* <ClothingData /> */}
