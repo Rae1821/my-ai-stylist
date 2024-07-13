@@ -9,6 +9,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import Calculator from "./Calculator";
 
 const Profile = async () => {
   const session = await auth();
@@ -33,7 +35,14 @@ const Profile = async () => {
                 </CardDescription>
               </CardHeader>
               <CardFooter>
-                <Button>Calculate Body Shape</Button>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button>Find My Shape</Button>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <Calculator />
+                  </DialogContent>
+                </Dialog>
               </CardFooter>
             </Card>
           </div>

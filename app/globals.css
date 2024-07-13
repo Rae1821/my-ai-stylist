@@ -13,8 +13,8 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    /* coral pink */
-    --primary: 0 83% 70%;
+    /* tailwindcss teal-600 */
+    --primary: 175, 84%, 32%;
     --primary-foreground: 210 40% 98%;
 
     /* light turquoise */

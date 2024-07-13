@@ -1,6 +1,6 @@
 import React from "react";
 import { doSocialLogin } from "@/app/actions";
-import { Button } from "../ui/button";
+import { Button } from "../../../components/ui/button";
 
 const SocialLogin = () => {
   return (

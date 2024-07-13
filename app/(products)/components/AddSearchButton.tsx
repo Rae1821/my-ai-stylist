@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormStatus } from "react-dom";
-import { Button } from "../ui/button";
+import { Button } from "../../../components/ui/button";
 import Image from "next/image";
 
 export function AddSearchButton() {

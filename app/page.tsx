@@ -1,11 +1,11 @@
 // import Chatbot from "@/components/shared/Chatbot";
 
 // import AllClothing from "@/components/shared/AllClothing";
-import Calculator from "@/components/shared/Calculator";
-import Hero from "@/components/shared/Hero";
-import Quiz from "@/components/shared/Quiz";
-// import SearchBar from "@/components/shared/SearchBar";
 
+import Hero from "@/components/shared/Hero";
+import Quiz from "./(dashboard)/components/Quiz";
+import Calculator from "./(dashboard)/components/Calculator";
+// import SearchBar from "@/components/shared/SearchBar";
 
 export default async function Home() {
   return (

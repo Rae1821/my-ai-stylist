@@ -82,14 +82,10 @@ const Calculator = () => {
 
   return (
     <div id="calculator" className="container mt-12">
-      {/* <div className="mx-auto mt-24"> */}
-      {/* <div> */}
       <h2 className="text-3xl font-semibold">Body Shape Calculator</h2>
       <p className="pb-4">
         Find out your body shape to get better fitting clothes
       </p>
-      {/* </div> */}
-      {/* </div> */}
 
       <div className="mx-auto w-full">
         <Form {...form}>
@@ -142,17 +138,19 @@ const Calculator = () => {
                 </FormItem>
               )}
             />
-            <div>
-              <Button type="submit">Submit</Button>
-              <Button type="reset" onClick={handleReset}>
+            <div className="flex items-center gap-4">
+              <Button type="submit">Calculate Shape</Button>
+              <Button type="reset" variant="ghost" onClick={handleReset}>
                 Reset
               </Button>
             </div>
           </form>
         </Form>
 
-        <div>
-          <h2>Your body shape is: {shapeResults}</h2>
+        <div className="mt-8">
+          <h2 className="mb-4 text-lg">
+            Your body shape is: <span className="text-2xl">{shapeResults}</span>
+          </h2>
           <p>
             Save to profile?{" "}
             <span>

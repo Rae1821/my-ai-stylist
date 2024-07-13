@@ -1,8 +1,9 @@
-import SearchBar from "@/components/shared/SearchBar";
 // import ClothingCard from "@/components/shared/ClothingCard";
 import { fetchClothing } from "@/utils";
 import { HomeProps } from "@/types";
-import ClothingCard from "@/components/shared/ClothingCard";
+import ClothingCard from "../components/ClothingCard";
+import SearchBar from "../components/SearchBar";
+
 // import { useSession } from 'next-auth/react'
 
 export default async function RecommendationsPage({ searchParams }: HomeProps) {

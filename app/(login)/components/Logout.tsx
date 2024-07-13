@@ -1,10 +1,10 @@
 import { doLogout } from "@/app/actions";
-import { Button } from "../ui/button";
+import { Button } from "../../../components/ui/button";
 
 const Logout = () => {
   return (
     <form action={doLogout}>
-      <Button size="sm" type="submit">
+      <Button size="sm" variant="outline" type="submit">
         Logout
       </Button>
     </form>

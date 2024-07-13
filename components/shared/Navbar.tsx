@@ -1,7 +1,8 @@
 import { navLinks } from "@/constants";
 import Link from "next/link";
 import { auth } from "@/auth";
-import Logout from "./Logout";
+import Logout from "../../app/(login)/components/Logout";
+import { Button } from "../ui/button";
 
 const Navbar = async () => {
   const session = await auth();
@@ -10,7 +11,7 @@ const Navbar = async () => {
 
   return (
     <nav>
-      <ul className="flex w-full cursor-pointer flex-col items-start gap-5 text-sm font-semibold tracking-wider md:flex-row md:justify-between">
+      <ul className="flex w-full cursor-pointer flex-col items-start gap-5 text-sm font-semibold tracking-wider md:flex-row md:items-center md:justify-between">
         {navLinks.map((link) => (
           <li key={link.route}>
             <Link
@@ -21,7 +22,13 @@ const Navbar = async () => {
             </Link>
           </li>
         ))}
-        {!session?.user ? <Link href="/sign-in">Login</Link> : <Logout />}
+        {!session?.user ? (
+          <Button asChild>
+            <Link href="/sign-in">Login</Link>
+          </Button>
+        ) : (
+          <Logout />
+        )}
       </ul>
     </nav>
   );

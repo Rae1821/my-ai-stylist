@@ -1,12 +1,10 @@
 "use client";
 
 import { questions } from "@/constants";
-import { Button } from "../ui/button";
 import React, { FC, useState } from "react";
-import { toast } from "../ui/use-toast";
-// import Image from "next/image";
 import { BookmarkIcon } from "@radix-ui/react-icons";
-// import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/use-toast";
 
 type Answer = {
   index: number;

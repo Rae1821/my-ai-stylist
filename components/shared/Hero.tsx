@@ -24,7 +24,7 @@ const Hero = () => {
         <p className="mb-8 mt-2 hidden md:flex">
           Take our quiz to find out your unique fashion style!
         </p>
-        <Button asChild size="sm" className="w-1/4 bg-[#038c8c] md:w-3/4">
+        <Button asChild size="sm" className="w-1/4 md:w-3/4">
           <Link href="/">Start Quiz</Link>
         </Button>
       </div>
