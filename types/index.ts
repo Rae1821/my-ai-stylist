@@ -1,3 +1,63 @@
+// ====== USER PARAMS
+export type CreateUserParams = {
+  userId: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  image: string;
+  bodyShape: string;
+  fashionStyle: string;
+  path: string;
+};
+
+export type UpdateUserParams = {
+  userId: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  image: string;
+  bodyShape: string;
+  fashionStyle: string;
+  path: string;
+};
+export type DeleteUserParams = {
+  userId: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  image: string;
+  bodyShape: string;
+  fashionStyle: string;
+  path: string;
+};
+
+// ====== PROFILE PARAMS
+
+export type CreateProfileParams = {
+  userId: string;
+  bodyShape: string;
+  fashionStyle: string;
+  // favoriteProducts: Array<string>;
+  path: string;
+};
+
+export type UpdateProfileParams = {
+  userId: string;
+  bodyShape: string;
+  fashionStyle: string;
+  // favoriteProducts: Array<string>;
+  path: string;
+};
+
+export type DeleteProfileParams = {
+  userId: string;
+  bodyShape: string;
+  fashionStyle: string;
+  // favoriteProducts: Array<string>;
+
+  path: string;
+};
+
 export interface SearchShapeProps {
   shape: string;
   setShape: (shape: string) => void;
@@ -21,7 +81,6 @@ export interface SearchProps {
 export interface HomeProps {
   searchParams: SearchProps;
 }
-
 
 // asin:"B010RWDJOY"
 // product_title:"Nike Performance Cushion Crew Socks with Band (6 Pairs)"

@@ -5,9 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
-
 import { Input } from "@/components/ui/input";
-// import { Label } from "@/components/ui/label";
 import {
   Form,
   FormControl,
@@ -19,32 +17,43 @@ import {
 } from "@/components/ui/form";
 
 import { useState } from "react";
+import { Separator } from "@/components/ui/separator";
+
+import { useRouter } from "next/navigation";
+import { createProfile } from "@/lib/actions/profile.actions";
 
 const formSchema = z.object({
   shoulders: z.string(),
   waist: z.string(),
   hips: z.string(),
+  checked: z.boolean(),
 });
 
-const Calculator = () => {
+type CalculatorProps = {
+  userId: string;
+};
+
+const Calculator = ({ userId }: CalculatorProps) => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       shoulders: "",
       waist: "",
       hips: "",
+      checked: false,
     },
   });
+  const router = useRouter();
 
   const [shapeResults, setShapeResults] = useState<string>("");
   const [isChecked, setIsChecked] = useState<boolean>(false);
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     const shoulders = +values.shoulders;
     const waist = +values.waist;
     const hips = +values.hips;
 
-    console.log(values.waist);
+    // console.log(values.waist);
 
     try {
       if (hips / shoulders >= 1.05 && waist < hips) {
@@ -69,10 +78,33 @@ const Calculator = () => {
     } catch (err) {
       console.log(err);
     }
+
+    handleSaveToProfile();
   }
 
-  const handleChecked = () => {
+  const handleChecked = async () => {
     setIsChecked((prevIsChecked) => !prevIsChecked);
+  };
+
+  const handleSaveToProfile = async () => {
+    handleChecked();
+
+    if (isChecked) {
+      try {
+        const newProfile = await createProfile({
+          userId,
+          fashionStyle: "",
+          bodyShape: shapeResults,
+          path: "/profile",
+        });
+
+        if (newProfile) {
+          router.push(`/profile/${newProfile._id}`);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    }
   };
 
   const handleReset = () => {
@@ -81,21 +113,24 @@ const Calculator = () => {
   };
 
   return (
-    <div id="calculator" className="container mt-12">
-      <h2 className="text-3xl font-semibold">Body Shape Calculator</h2>
+    <div id="calculator" className="container">
+      {/* <h2 className="text-3xl font-semibold">Body Shape Calculator</h2>
       <p className="pb-4">
         Find out your body shape to get better fitting clothes
-      </p>
+      </p> */}
 
       <div className="mx-auto w-full">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="mb-8 space-y-8"
+          >
             <FormField
               control={form.control}
               name="shoulders"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel>Shoulder Measurement</FormLabel>
                   <FormControl>
                     <Input placeholder="39" {...field} />
                   </FormControl>
@@ -138,25 +173,32 @@ const Calculator = () => {
                 </FormItem>
               )}
             />
-            <div className="flex items-center gap-4">
+            <div>
+              <p className="flex items-center gap-4 text-sm font-semibold tracking-wide">
+                Save shape to profile?{" "}
+                <span className="">
+                  <Switch checked={isChecked} onClick={handleChecked} />
+                </span>
+              </p>
+            </div>
+            <div className="flex items-center justify-between">
               <Button type="submit">Calculate Shape</Button>
-              <Button type="reset" variant="ghost" onClick={handleReset}>
-                Reset
+              <Button
+                type="reset"
+                variant="ghost"
+                onClick={handleReset}
+                className="decoration-teal-600 decoration-2 hover:bg-transparent hover:underline hover:underline-offset-4"
+              >
+                Start Over
               </Button>
             </div>
           </form>
         </Form>
-
+        <Separator />
         <div className="mt-8">
           <h2 className="mb-4 text-lg">
             Your body shape is: <span className="text-2xl">{shapeResults}</span>
           </h2>
-          <p>
-            Save to profile?{" "}
-            <span>
-              <Switch checked={isChecked} onClick={handleChecked} />
-            </span>
-          </p>
         </div>
       </div>
     </div>

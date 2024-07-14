@@ -1,5 +1,5 @@
 // import { LoginForm } from "@/components/shared/LoginForm";
-import SocialLogin from "@/components/shared/SocialLogin";
+
 import React from "react";
 import {
   Card,
@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import SocialLogin from "../components/SocialLogin";
 
 const page = () => {
   return (

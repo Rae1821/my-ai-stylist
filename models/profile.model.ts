@@ -2,24 +2,31 @@ import { Document, Schema, model, models } from "mongoose";
 
 export interface IProfile extends Document {
   _id: string;
-  creator: string;
-  style?: string;
-  shape?: string;
+  bodyShape?: string;
+  fashionStyle?: string;
+
+  // product: {
+  //   userId: string;
+  //   product_title: string;
+  //   product_price: number;
+  //   product_original_price: number;
+  //   product_star_rating: number;
+  //   product_num_ratings: number;
+  //   product_url: string;
+  //   product_photo: string;
+  // };
 }
 
 const ProfileSchema = new Schema({
-  creator: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
-  style: {
+  bodyShape: {
     type: String,
     required: false,
   },
-  shape: {
+  fashionStyle: {
     type: String,
     required: false,
   },
+  // product: { type: Schema.Types.ObjectId, ref: "Product" },
 });
 
 const Profile = models.Profile || model("Profile", ProfileSchema);

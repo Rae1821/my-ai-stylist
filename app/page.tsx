@@ -4,7 +4,6 @@
 
 import Hero from "@/components/shared/Hero";
 import Quiz from "./(dashboard)/components/Quiz";
-import Calculator from "./(dashboard)/components/Calculator";
 // import SearchBar from "@/components/shared/SearchBar";
 
 export default async function Home() {
@@ -16,7 +15,7 @@ export default async function Home() {
         <Quiz />
       </div>
 
-      <Calculator />
+
 
       {/* <Chatbot /> */}
       {/* <ClothingData /> */}
